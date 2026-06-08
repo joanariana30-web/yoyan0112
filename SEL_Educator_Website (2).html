@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growing Minds: A Social & Emotional Learning Resource for Educators</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #5C7A5A;
+    --sage-light: #8AAB87;
+    --sage-pale: #EBF3EA;
+    --terracotta: #C4714A;
+    --terracotta-light: #E8A882;
+    --terracotta-pale: #FBF0EB;
+    --gold: #D4A843;
+    --gold-pale: #FBF5E6;
+    --navy: #2C3E50;
+    --cream: #FAF8F4;
+    --white: #FFFFFF;
+    --text-dark: #1A2332;
+    --text-mid: #4A5568;
+    --text-light: #718096;
+    --border: #E2E8E0;
+    --shadow: 0 4px 24px rgba(44,62,80,0.10);
+    --shadow-lg: 0 12px 48px rgba(44,62,80,0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,248,244,0.96);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.25rem; font-weight: 700;
+    color: var(--sage);
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 1.5rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 500;
+    color: var(--text-mid);
+    text-decoration: none;
+    transition: color 0.2s;
+    letter-spacing: 0.02em;
+  }
+  .nav-links a:hover { color: var(--sage); }
+
+  /* HERO */
+  .hero {
+    margin-top: 64px;
+    background: linear-gradient(135deg, var(--sage) 0%, #3D5C3B 60%, var(--navy) 100%);
+    padding: 7rem 2rem 5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    pointer-events: none;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: rgba(255,255,255,0.9);
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1.15;
+    margin-bottom: 1.25rem;
+    max-width: 820px;
+    margin-left: auto; margin-right: auto;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--terracotta-light);
+  }
+  .hero p {
+    font-size: 1.15rem;
+    color: rgba(255,255,255,0.82);
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    font-weight: 300;
+  }
+  .hero-cta {
+    display: inline-flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+  }
+  .btn {
+    padding: 0.85rem 2rem;
+    border-radius: 100px;
+    font-size: 0.95rem; font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s;
+    display: inline-block;
+  }
+  .btn-white {
+    background: var(--white);
+    color: var(--sage);
+  }
+  .btn-white:hover {
+    background: var(--sage-pale);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 2px solid rgba(255,255,255,0.6);
+  }
+  .btn-outline:hover {
+    background: rgba(255,255,255,0.12);
+    border-color: var(--white);
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.78rem; font-weight: 600;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 4vw, 2.8rem);
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }
+  .section-lead {
+    font-size: 1.05rem;
+    color: var(--text-mid);
+    max-width: 700px;
+    margin-bottom: 3rem;
+    font-weight: 300;
+  }
+
+  /* PRENATAL IMPACT */
+  .prenatal-section { background: var(--white); }
+  .impact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: start;
+    margin-top: 2rem;
+  }
+  .impact-text p { margin-bottom: 1.1rem; color: var(--text-mid); font-size: 0.97rem; }
+  .impact-card-stack { display: flex; flex-direction: column; gap: 1rem; }
+  .impact-card {
+    background: var(--sage-pale);
+    border-left: 4px solid var(--sage);
+    padding: 1.25rem 1.5rem;
+    border-radius: 0 12px 12px 0;
+  }
+  .impact-card h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700;
+    color: var(--sage); margin-bottom: 0.35rem;
+  }
+  .impact-card p { font-size: 0.9rem; color: var(--text-mid); }
+  .impact-card.terracotta {
+    background: var(--terracotta-pale);
+    border-left-color: var(--terracotta);
+  }
+  .impact-card.terracotta h4 { color: var(--terracotta); }
+  .impact-card.gold {
+    background: var(--gold-pale);
+    border-left-color: var(--gold);
+  }
+  .impact-card.gold h4 { color: #A07020; }
+
+  /* STAGES */
+  .stages-section { background: var(--cream); }
+  .stages-tabs {
+    display: flex; gap: 0.5rem; flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+  .tab-btn {
+    padding: 0.6rem 1.4rem;
+    border-radius: 100px;
+    border: 2px solid var(--border);
+    background: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; font-weight: 500;
+    color: var(--text-mid);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab-btn.active, .tab-btn:hover {
+    background: var(--sage);
+    border-color: var(--sage);
+    color: var(--white);
+  }
+  .stage-panel { display: none; }
+  .stage-panel.active { display: block; }
+  .stage-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+  .stage-milestones, .stage-strategies {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: var(--shadow);
+  }
+  .stage-milestones h3, .stage-strategies h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 1.25rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .stage-icon { font-size: 1.4rem; }
+  .milestone-list { list-style: none; }
+  .milestone-list li {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.93rem; color: var(--text-mid);
+  }
+  .milestone-list li:last-child { border-bottom: none; }
+  .milestone-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--sage);
+    margin-top: 0.45rem;
+    flex-shrink: 0;
+  }
+  .strategy-item {
+    background: var(--sage-pale);
+    border-radius: 12px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 0.85rem;
+  }
+  .strategy-item:last-child { margin-bottom: 0; }
+  .strategy-item h4 {
+    font-weight: 600; font-size: 0.95rem;
+    color: var(--sage); margin-bottom: 0.3rem;
+  }
+  .strategy-item p { font-size: 0.88rem; color: var(--text-mid); }
+  .stage-age-badge {
+    display: inline-block;
+    background: var(--sage);
+    color: var(--white);
+    font-size: 0.75rem; font-weight: 600;
+    padding: 0.25rem 0.9rem;
+    border-radius: 100px;
+    margin-bottom: 1.5rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* SELF-REGULATION */
+  .selfregulation-section { background: var(--navy); }
+  .selfregulation-section .section-label { color: var(--terracotta-light); }
+  .selfregulation-section .section-title { color: var(--white); }
+  .selfregulation-section .section-lead { color: rgba(255,255,255,0.7); }
+  .sr-definition {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 3rem;
+  }
+  .sr-definition blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    color: var(--white);
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  .sr-definition cite {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+    font-style: normal;
+  }
+  .sr-examples-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+    margin-bottom: 3rem;
+  }
+  .sr-example {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+  .sr-example .emoji { font-size: 2.2rem; margin-bottom: 0.75rem; }
+  .sr-example h4 {
+    font-weight: 600; font-size: 0.95rem;
+    color: var(--white); margin-bottom: 0.4rem;
+  }
+  .sr-example p { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+  .sr-teacher-strategies h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem; color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .sr-strategy-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+  }
+  .sr-strategy-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 16px;
+    padding: 1.5rem;
+  }
+  .sr-strategy-card .number {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem; font-weight: 900;
+    color: rgba(255,255,255,0.12);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .sr-strategy-card h4 {
+    font-weight: 600; font-size: 1rem;
+    color: var(--terracotta-light); margin-bottom: 0.5rem;
+  }
+  .sr-strategy-card p { font-size: 0.88rem; color: rgba(255,255,255,0.65); }
+
+  /* FAMILIES */
+  .families-section { background: var(--terracotta-pale); }
+  .families-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+  .family-card {
+    background: var(--white);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+  .family-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .family-card-header {
+    padding: 1.5rem 1.5rem 1rem;
+    background: linear-gradient(135deg, var(--sage) 0%, var(--sage-light) 100%);
+    color: var(--white);
+  }
+  .family-card-header.tc {
+    background: linear-gradient(135deg, var(--terracotta) 0%, var(--terracotta-light) 100%);
+  }
+  .family-card-header.gd {
+    background: linear-gradient(135deg, #A07020 0%, var(--gold) 100%);
+  }
+  .family-card-header .stage-label {
+    font-size: 0.75rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    opacity: 0.8; margin-bottom: 0.35rem;
+  }
+  .family-card-header h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700;
+  }
+  .family-card-body { padding: 1.5rem; }
+  .family-tip {
+    display: flex; align-items: flex-start; gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .family-tip:last-child { margin-bottom: 0; }
+  .tip-icon {
+    font-size: 1.3rem; margin-top: 0.05rem; flex-shrink: 0;
+  }
+  .family-tip p { font-size: 0.9rem; color: var(--text-mid); }
+  .family-tip strong { color: var(--text-dark); font-weight: 600; }
+
+  /* REFERENCES */
+  .references-section { background: var(--white); }
+  .ref-list {
+    list-style: none;
+    display: flex; flex-direction: column; gap: 1rem;
+  }
+  .ref-list li {
+    background: var(--cream);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    font-size: 0.9rem; color: var(--text-mid);
+    line-height: 1.75;
+    border-left: 4px solid var(--sage);
+  }
+  .ref-list li strong { color: var(--text-dark); }
+
+  /* CALLOUT BANNER */
+  .callout-banner {
+    background: linear-gradient(90deg, var(--terracotta) 0%, #B05A35 100%);
+    padding: 2.5rem 2rem;
+    text-align: center;
+  }
+  .callout-banner p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem; color: var(--white);
+    max-width: 700px; margin: 0 auto;
+    font-style: italic;
+  }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.55);
+    text-align: center;
+    padding: 2rem;
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--sage-light); text-decoration: none; }
+
+  /* DIVIDER */
+  .wave-divider { overflow: hidden; line-height: 0; }
+  .wave-divider svg { display: block; }
+
+  /* HIGHLIGHT BOX */
+  .highlight-box {
+    background: linear-gradient(135deg, var(--sage-pale), var(--gold-pale));
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.75rem;
+    margin: 2rem 0;
+  }
+  .highlight-box h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem; color: var(--sage);
+    margin-bottom: 0.6rem;
+  }
+  .highlight-box p { font-size: 0.93rem; color: var(--text-mid); }
+
+  @media (max-width: 768px) {
+    .impact-grid, .stage-content, .sr-examples-grid,
+    .sr-strategy-cards, .families-grid { grid-template-columns: 1fr; }
+    nav .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">🌱 Growing Minds</a>
+  <ul class="nav-links">
+    <li><a href="#prenatal">Early Development</a></li>
+    <li><a href="#stages">Dev. Stages</a></li>
+    <li><a href="#selfregulation">Self-Regulation</a></li>
+    <li><a href="#families">For Families</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-badge">Educator Resource · Social &amp; Emotional Learning</div>
+  <h1>Nurturing <em>Hearts &amp; Minds</em> Across Every Stage of Development</h1>
+  <p>A research-informed guide for educators committed to supporting children's social and emotional growth — from the womb through adolescence.</p>
+  <div class="hero-cta">
+    <a href="#stages" class="btn btn-white">Explore Developmental Stages</a>
+    <a href="#families" class="btn btn-outline">Family Resources</a>
+  </div>
+</header>
+
+<!-- PRENATAL IMPACT -->
+<section class="prenatal-section" id="prenatal">
+  <div class="section-inner">
+    <div class="section-label">Foundation Matters</div>
+    <h2 class="section-title">How Early Experiences Shape Adolescent Social &amp; Emotional Development</h2>
+    <p class="section-lead">Long before a child enters your classroom, the seeds of social and emotional health are being planted — during pregnancy, infancy, and the earliest years of life.</p>
+
+    <div class="impact-grid">
+      <div class="impact-text">
+        <p>The science is clear: <strong>early brain development is profoundly shaped by prenatal and early childhood experiences</strong>. During pregnancy, a mother's stress levels, nutrition, substance use, and emotional well-being directly influence fetal brain architecture. Elevated cortisol from chronic maternal stress, for example, crosses the placental barrier and can wire a child's stress-response system for heightened reactivity — a neurological pattern that may manifest in adolescence as anxiety, emotional dysregulation, or difficulty in peer relationships (Shonkoff et al., 2012).</p>
+        <p>The first three years of life represent a <strong>sensitive period</strong> for social-emotional brain development. Secure attachment — formed through consistent, nurturing caregiver responses — builds the neural foundation for empathy, trust, and emotional regulation. Children who experience early trauma, neglect, or insecure attachment are at significantly higher risk for social-emotional difficulties during adolescence, including depression, aggression, and challenges with identity formation.</p>
+        <p>Educators who understand this trajectory are better equipped to respond compassionately to adolescent behavior, recognizing that a teenager who struggles to regulate emotions or form healthy relationships may be carrying unresolved patterns from their earliest years. Trauma-informed teaching, relationship-centered classrooms, and explicit SEL instruction can serve as powerful protective factors for these students.</p>
+
+        <div class="highlight-box">
+          <h4>💡 Key Takeaway for Educators</h4>
+          <p>Difficult behavior in your classroom is often a window into a student's developmental history. A trauma-informed, relationship-first approach can interrupt and rewrite early neural patterns — the adolescent brain remains remarkably plastic.</p>
+        </div>
+      </div>
+
+      <div class="impact-card-stack">
+        <div class="impact-card">
+          <h4>🤰 Prenatal Period Impact</h4>
+          <p>Maternal stress, nutrition, and substance exposure shape the developing limbic system and HPA (stress) axis. Children of mothers who experienced high prenatal stress show higher cortisol reactivity and greater emotional sensitivity in adolescence — both gifts and vulnerabilities depending on support received.</p>
+        </div>
+        <div class="impact-card terracotta">
+          <h4>👶 Early Childhood Impact (Ages 0–5)</h4>
+          <p>Secure attachment with caregivers activates brain regions responsible for empathy and emotional regulation. Early childhood adversity (ACEs) is strongly associated with adolescent behavioral and emotional challenges. However, even one stable, nurturing adult relationship can serve as a buffer against these effects.</p>
+        </div>
+        <div class="impact-card gold">
+          <h4>🧠 Adolescent Outcomes</h4>
+          <p>The social-emotional foundations laid in early childhood directly influence adolescent identity, peer relationships, emotional regulation, and academic engagement. Teens who received nurturing early care show stronger executive function, empathy, and resilience — all essential for navigating adolescent social complexity.</p>
+        </div>
+        <div class="impact-card">
+          <h4>🏫 What Schools Can Do</h4>
+          <p>Research consistently shows that high-quality SEL programming in schools produces measurable improvements in emotional regulation, academic achievement, and prosocial behavior — even for students who experienced early adversity. Schools are uniquely positioned to provide the second-chance neurological experiences that rewrite early developmental patterns.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STAGES SECTION -->
+<section class="stages-section" id="stages">
+  <div class="section-inner">
+    <div class="section-label">Developmental Deep Dives</div>
+    <h2 class="section-title">Social &amp; Emotional Milestones by Stage</h2>
+    <p class="section-lead">Explore three key developmental stages — including specific social-emotional milestones and two ready-to-implement classroom strategies for each.</p>
+
+    <div class="stages-tabs">
+      <button class="tab-btn active" onclick="showStage('infancy')">👶 Infancy</button>
+      <button class="tab-btn" onclick="showStage('early')">🧒 Early Childhood</button>
+      <button class="tab-btn" onclick="showStage('middle')">🧑 Middle Childhood</button>
+    </div>
+
+    <!-- INFANCY -->
+    <div class="stage-panel active" id="stage-infancy">
+      <div class="stage-age-badge">Infancy · Ages 0–2</div>
+      <div class="stage-content">
+        <div class="stage-milestones">
+          <h3><span class="stage-icon">🌟</span> Social-Emotional Milestones</h3>
+          <ul class="milestone-list">
+            <li><span class="milestone-dot"></span>Develops a secure attachment bond with primary caregivers through consistent, responsive caregiving (by 6–8 months)</li>
+            <li><span class="milestone-dot"></span>Displays a clear social smile in response to familiar faces and voices (4–6 weeks)</li>
+            <li><span class="milestone-dot"></span>Demonstrates stranger anxiety, indicating recognition of and preference for familiar caregivers (7–12 months)</li>
+            <li><span class="milestone-dot"></span>Engages in joint attention — sharing focus on an object with a caregiver by pointing or looking — which is a precursor to empathy and social referencing (9–14 months)</li>
+            <li><span class="milestone-dot"></span>Shows the beginning of self-soothing behaviors (e.g., thumb-sucking, seeking comfort objects) indicating early self-regulation attempts (10–18 months)</li>
+            <li><span class="milestone-dot"></span>Expresses a range of emotions — joy, sadness, anger, fear — with increasing differentiation (throughout first year)</li>
+            <li><span class="milestone-dot"></span>Begins to read and respond to caregiver emotional expressions (social referencing), using adult reactions to evaluate unfamiliar situations (8–12 months)</li>
+          </ul>
+        </div>
+        <div class="stage-strategies">
+          <h3><span class="stage-icon">🏫</span> Classroom Strategies for Teachers</h3>
+          <p style="font-size:0.85rem;color:var(--text-light);margin-bottom:1rem;"><em>Note: While teachers rarely work directly with infants, understanding this stage informs trauma-informed practice for all ages and is essential for early childhood educators.</em></p>
+          <div class="strategy-item">
+            <h4>Strategy 1: Serve-and-Return Interactions</h4>
+            <p>Mirror the infant's vocalizations, facial expressions, and actions in a warm, responsive way. When an infant coos, respond by cooing back. This back-and-forth interaction — called "serve and return" — is foundational for building neural connections that support social-emotional development. For early childhood educators: incorporate this as a regular practice during feeding, diapering, and play time. Every responsive interaction builds the architecture of a secure attachment.</p>
+          </div>
+          <div class="strategy-item">
+            <h4>Strategy 2: Emotion Narration &amp; Labeling</h4>
+            <p>Verbally narrate and name the infant's emotional states throughout the day: "You look frustrated — that toy is tricky!" or "You're so happy to see me!" This practice, called emotion coaching, builds the child's emotional vocabulary, validates their inner experience, and lays the foundation for emotional literacy that will serve them throughout childhood and adolescence. Even very young infants benefit from having their emotional world acknowledged and reflected back to them.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EARLY CHILDHOOD -->
+    <div class="stage-panel" id="stage-early">
+      <div class="stage-age-badge">Early Childhood · Ages 3–6</div>
+      <div class="stage-content">
+        <div class="stage-milestones">
+          <h3><span class="stage-icon">🌟</span> Social-Emotional Milestones</h3>
+          <ul class="milestone-list">
+            <li><span class="milestone-dot"></span>Demonstrates theory of mind — understanding that others have thoughts, feelings, and perspectives different from their own (emerges around age 4)</li>
+            <li><span class="milestone-dot"></span>Engages in cooperative and imaginative play with peers, negotiating roles and rules in pretend play scenarios</li>
+            <li><span class="milestone-dot"></span>Shows increasing empathy — expressing concern when peers are hurt or upset, and attempting to offer comfort</li>
+            <li><span class="milestone-dot"></span>Develops a sense of personal identity and gender identity, showing strong preferences and asserting "I am..." statements</li>
+            <li><span class="milestone-dot"></span>Begins to understand and follow classroom and social rules, though still requires significant adult guidance and consistency</li>
+            <li><span class="milestone-dot"></span>Demonstrates the ability to delay gratification for short periods (Marshmallow Test era), a key marker of developing self-regulation</li>
+            <li><span class="milestone-dot"></span>Shows a range of complex emotions including pride, shame, embarrassment, and guilt — social emotions tied to self-awareness</li>
+          </ul>
+        </div>
+        <div class="stage-strategies">
+          <h3><span class="stage-icon">🏫</span> Classroom Strategies for Teachers</h3>
+          <div class="strategy-item">
+            <h4>Strategy 1: Feelings Corners &amp; Emotion Check-Ins</h4>
+            <p>Create a designated "Feelings Corner" stocked with an emotion chart, feelings puppets, and calming tools (fidgets, breathing cards). Begin each morning with a simple emotion check-in: children place a clothespin or magnet next to the emoji that best matches how they feel. This daily ritual normalizes emotional expression, gives teachers real-time social-emotional data, and builds children's emotional vocabulary. Over time, children internalize the habit of self-awareness, a cornerstone of social-emotional competence.</p>
+          </div>
+          <div class="strategy-item">
+            <h4>Strategy 2: Structured Cooperative Play</h4>
+            <p>Intentionally design play-based learning experiences that require children to collaborate — block-building challenges, dramatic play centers, and group art projects. Teach and rehearse specific social scripts ("Can I join you?" / "It's my turn" / "Let's take turns") before free play. Debrief afterwards: "What was tricky? How did you solve it?" This approach directly targets cooperative skills, perspective-taking, and conflict resolution — milestones critical to this stage's social-emotional development.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MIDDLE CHILDHOOD -->
+    <div class="stage-panel" id="stage-middle">
+      <div class="stage-age-badge">Middle Childhood · Ages 7–12</div>
+      <div class="stage-content">
+        <div class="stage-milestones">
+          <h3><span class="stage-icon">🌟</span> Social-Emotional Milestones</h3>
+          <ul class="milestone-list">
+            <li><span class="milestone-dot"></span>Develops a stable and multidimensional self-concept — describing themselves across multiple domains (academics, athletics, friendships) with greater nuance and realism</li>
+            <li><span class="milestone-dot"></span>Becomes increasingly peer-oriented; friendships deepen into reciprocal relationships based on loyalty, shared interests, and mutual trust</li>
+            <li><span class="milestone-dot"></span>Shows the capacity for industry vs. inferiority (Erikson) — a strong need to feel competent and productive, making academic and social success critically important to self-esteem</li>
+            <li><span class="milestone-dot"></span>Demonstrates more sophisticated empathy, including cognitive empathy (understanding others' perspectives) alongside emotional empathy</li>
+            <li><span class="milestone-dot"></span>Develops moral reasoning — moving from simple rule-following toward an understanding of fairness, justice, and the impact of actions on others (Kohlberg's conventional level)</li>
+            <li><span class="milestone-dot"></span>Shows improved emotional regulation — able to mask or modulate emotional expression in social contexts (e.g., not crying at school when sad)</li>
+            <li><span class="milestone-dot"></span>Begins navigating peer group dynamics, including social hierarchies, inclusion/exclusion, and early experiences of peer pressure</li>
+          </ul>
+        </div>
+        <div class="stage-strategies">
+          <h3><span class="stage-icon">🏫</span> Classroom Strategies for Teachers</h3>
+          <div class="strategy-item">
+            <h4>Strategy 1: Class Meetings &amp; Restorative Circles</h4>
+            <p>Hold weekly class meetings using a structured circle format where students practice active listening, perspective-sharing, and collaborative problem-solving. Use prompts like: "Tell us about a time you felt left out — what would have helped?" Restorative circles align perfectly with this stage's developmental focus on fairness, belonging, and moral reasoning. They also provide a safe container for the increasingly complex peer dynamics — cliques, gossip, exclusion — that characterize middle childhood.</p>
+          </div>
+          <div class="strategy-item">
+            <h4>Strategy 2: Growth Mindset &amp; Strength-Based Journaling</h4>
+            <p>Integrate brief, structured journaling prompts 2–3 times per week targeting self-concept and resilience: "Describe a challenge you faced this week and what it taught you about yourself" or "What are three strengths you brought to a team today?" This strategy directly addresses the industry vs. inferiority dynamic of middle childhood — helping students build a confident, growth-oriented self-concept that acts as a buffer against peer comparison, academic setbacks, and the self-esteem dips common at this stage.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CALLOUT BANNER -->
+<div class="callout-banner">
+  <p>"The most important thing that teachers do is not teach content — it is build relationships. And relationships are the architecture of social-emotional learning."</p>
+</div>
+
+<!-- SELF-REGULATION -->
+<section class="selfregulation-section" id="selfregulation">
+  <div class="section-inner">
+    <div class="section-label">Core Competency</div>
+    <h2 class="section-title">Understanding &amp; Teaching Self-Regulation</h2>
+    <p class="section-lead">Self-regulation is one of the most powerful predictors of long-term academic, social, and emotional success. Here's what it is — and how educators can nurture it.</p>
+
+    <div class="sr-definition">
+      <blockquote>"Self-regulation is the ability to manage one's emotions, thoughts, and behaviors in ways that produce positive outcomes — including resisting impulsive actions, managing stress, focusing attention, and setting and working toward goals."</blockquote>
+      <cite>— Adapted from Baumeister &amp; Vohs (2004); Shonkoff et al. (2012)</cite>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--white);margin-bottom:1.25rem;">Examples of Self-Regulation in Action</h3>
+    <div class="sr-examples-grid">
+      <div class="sr-example">
+        <div class="emoji">😤 → 😮‍💨</div>
+        <h4>Emotional Regulation</h4>
+        <p>A child who feels angry when losing a game takes three deep breaths and says "I feel frustrated" instead of throwing the game pieces.</p>
+      </div>
+      <div class="sr-example">
+        <div class="emoji">📚 → ⏰</div>
+        <h4>Behavioral Regulation</h4>
+        <p>A student resists the urge to check their phone during class and redirects their attention back to the lesson when their mind wanders.</p>
+      </div>
+      <div class="sr-example">
+        <div class="emoji">😟 → 🧠</div>
+        <h4>Cognitive Regulation</h4>
+        <p>A child who feels test anxiety uses positive self-talk ("I've studied; I can do this") to manage worry and maintain focus.</p>
+      </div>
+      <div class="sr-example">
+        <div class="emoji">🍬 → ⏳</div>
+        <h4>Delay of Gratification</h4>
+        <p>A young child waits their turn to speak in circle time, even though they are bursting with excitement to share their idea.</p>
+      </div>
+      <div class="sr-example">
+        <div class="emoji">😰 → 🤝</div>
+        <h4>Social Regulation</h4>
+        <p>A middle schooler disagrees with a peer's opinion during a group project but chooses respectful dialogue over dismissal or conflict.</p>
+      </div>
+      <div class="sr-example">
+        <div class="emoji">🎯 → ✅</div>
+        <h4>Goal-Directed Behavior</h4>
+        <p>A student breaks a large project into smaller steps and follows through on each one, resisting distractions across multiple days.</p>
+      </div>
+    </div>
+
+    <div class="sr-teacher-strategies">
+      <h3>How Teachers Can Model &amp; Encourage Self-Regulation</h3>
+      <div class="sr-strategy-cards">
+        <div class="sr-strategy-card">
+          <div class="number">01</div>
+          <h4>Model Think-Alouds</h4>
+          <p>Verbalize your own self-regulation process in real time: "I'm feeling a bit overwhelmed with everything on my plate right now — I'm going to pause, take a breath, and make a list so I can focus on one thing at a time." Students who witness adults self-regulating authentically learn that it is both possible and normal — an irreplaceable form of social learning (Bandura, 1977).</p>
+        </div>
+        <div class="sr-strategy-card">
+          <div class="number">02</div>
+          <h4>Structured Mindfulness Breaks</h4>
+          <p>Incorporate brief (2–5 minute) mindfulness or breathing exercises at predictable transition points in the day — after recess, before tests, or when energy is running high. Techniques such as "box breathing," body scans, or grounding exercises train the prefrontal cortex to override the amygdala's stress response — literally building self-regulation capacity at the neurological level (Shonkoff et al., 2012).</p>
+        </div>
+        <div class="sr-strategy-card">
+          <div class="number">03</div>
+          <h4>Co-Create Regulation Toolkits</h4>
+          <p>Work with students to build personalized "regulation toolkits" — individualized menus of strategies (movement breaks, quiet corners, fidget tools, music) that they can access when emotional intensity rises. Teaching students to identify their early warning signs of dysregulation and to self-select appropriate tools develops metacognitive awareness and internal agency over their emotional states — the hallmarks of mature self-regulation (CASEL, 2020).</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAMILIES -->
+<section class="families-section" id="families">
+  <div class="section-inner">
+    <div class="section-label">Family Partnership</div>
+    <h2 class="section-title">Supporting Social-Emotional Development at Home</h2>
+    <p class="section-lead">Research shows that when families and schools work together to reinforce SEL, children's social-emotional outcomes improve significantly. Share these stage-specific strategies with the families you serve.</p>
+
+    <div class="families-grid">
+
+      <div class="family-card">
+        <div class="family-card-header">
+          <div class="stage-label">Infancy · Ages 0–2</div>
+          <h3>Building the Foundation of Trust</h3>
+        </div>
+        <div class="family-card-body">
+          <div class="family-tip">
+            <span class="tip-icon">💬</span>
+            <p><strong>Talk and Sing Constantly.</strong> Narrate your day ("Now we're getting dressed — I'm putting on your cozy socks!"). This builds emotional connection, language, and social attunement simultaneously. Your voice is your baby's primary social-emotional classroom.</p>
+          </div>
+          <div class="family-tip">
+            <span class="tip-icon">👁️</span>
+            <p><strong>Respond Consistently.</strong> Aim to respond to your baby's cries and cues promptly and warmly. You cannot "spoil" an infant — responsive caregiving in the first two years directly builds secure attachment, the bedrock of all future social-emotional health.</p>
+          </div>
+          <div class="family-tip">
+            <span class="tip-icon">😊</span>
+            <p><strong>Name Emotions Together.</strong> When your baby seems happy, sad, or scared, name it: "You look scared — that loud noise surprised you! You're safe." Emotion labeling by caregivers builds emotional literacy from day one.</p>
+          </div>
+          <div class="family-tip">
+            <span class="tip-icon">🪞</span>
+            <p><strong>Mirror Play.</strong> Spend time face-to-face, mirroring your infant's expressions and vocalizations. This "serve and return" interaction activates mirror neurons and builds the neural circuitry for empathy, social reciprocity, and communication.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="family-card">
+        <div class="family-card-header tc">
+          <div class="stage-label">Early Childhood · Ages 3–6</div>
+          <h3>Nurturing Empathy &amp; Emotional Literacy</h3>
+        </div>
+        <div class="family-card-body">
+          <div class="family-tip">
+            <span class="tip-icon">📖</span>
+            <p><strong>Emotion-Rich Storybooks.</strong> Read books that feature characters experiencing and navigating complex emotions (e.g., <em>The Invisible String</em>, <em>The Way I Feel</em>). Pause to ask: "How do you think she feels? What would you do?" This builds empathy, emotional vocabulary, and perspective-taking in a safe, engaging context.</p>
+          </div>
+          <div class="family-tip">
+            <span class="tip-icon">🎭</span>
+            <p><strong>Dramatic Play at Home.</strong> Encourage pretend play — playing "house," "school," or "doctor." Imaginative play naturally develops empathy, emotional regulation, social problem-solving, and narrative understanding. Resist the urge to direct; let children lead.</p>
+          </div>
+          <div class="family-tip">
+            <span class="tip-icon">🧘</span>
+            <p><strong>Teach "The Calm-Down Spot."</strong> Designate a cozy corner of your home with comfort items (stuffed animal, breathing cards, sensory bottle) where your child can go to regulate when overwhelmed. Practice going there together during calm moments so it becomes a familiar, positive tool — not a punishment.</p>
+          </div>
+          <div class="family-tip">
+            <span class="tip-icon">🗣️</span>
+            <p><strong>Emotion Coaching During Conflict.</strong> When your child is upset, resist the urge to fix it immediately. Instead, acknowledge and name the emotion first: "I can see you're furious that we have to leave the park." Validated emotions de-escalate faster and teach children that emotions are manageable — not overwhelming.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="family-card">
+        <div class="family-card-header gd">
+          <div class="stage-label">Middle Childhood · Ages 7–12</div>
+          <h3>Building Resilience &amp; Social Intelligence</h3>
+        </div>
+        <div class="family-card-body">
+          <div class="family-tip">
+            <span class="tip-icon">🍽️</span>
+            <p><strong>Daily Connection Rituals.</strong> Protect time for regular, device-free conversations — dinner, car rides, bedtime. Ask open-ended questions: "What's something that's been on your mind?" "What's one moment today that felt good?" Connection is the primary vehicle of social-emotional learning at this age.</p>
+          </div>
+          <div class="family-tip">
+            <span class="tip-icon">🤝</span>
+            <p><strong>Process Peer Conflicts Together.</strong> When your child reports a friendship conflict, resist giving advice immediately. First ask: "What do you think the other person was feeling?" Then: "What are a few ways you could handle this?" This approach builds problem-solving, perspective-taking, and emotional regulation — all core SEL competencies.</p>
+          </div>
+          <div class="family-tip">
+            <span class="tip-icon">💪</span>
+            <p><strong>Celebrate Effort, Not Outcomes.</strong> Praise the process: "I noticed how hard you worked on that, even when it got frustrating." This builds growth mindset and emotional resilience — the capacity to persevere through setbacks without compromising self-worth.</p>
+          </div>
+          <div class="family-tip">
+            <span class="tip-icon">🧩</span>
+            <p><strong>Teach Regulation Strategies.</strong> Introduce and practice specific self-regulation tools together: 4-7-8 breathing, progressive muscle relaxation, or a "worry journal." Having a toolkit of named strategies gives children agency over their emotional states — a fundamental life skill that will serve them through adolescence and beyond.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="highlight-box" style="margin-top:2.5rem;">
+      <h4>🔗 A Note on Family Communication</h4>
+      <p>Consider sending home a monthly SEL newsletter or family tip sheet that mirrors the social-emotional themes you are exploring in the classroom. When home and school reinforce the same emotional vocabulary and strategies, children internalize these skills far more deeply and durably. Tools like Seesaw, Class Dojo, or a simple email newsletter make this partnership accessible for all families.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- REFERENCES -->
+<section class="references-section" id="references">
+  <div class="section-inner">
+    <div class="section-label">Scholarly Foundation</div>
+    <h2 class="section-title">References</h2>
+    <p class="section-lead">This resource is grounded in peer-reviewed research and established frameworks in developmental psychology and education.</p>
+
+    <ul class="ref-list">
+      <li>
+        Collaborative for Academic, Social, and Emotional Learning (CASEL). (2020). <em>CASEL's SEL framework: What are the core competency areas and where are they promoted?</em> CASEL. <a href="https://casel.org/fundamentals-of-sel/what-is-the-casel-framework/" style="color:var(--sage);">https://casel.org/fundamentals-of-sel/what-is-the-casel-framework/</a>
+      </li>
+      <li>
+        Shonkoff, J. P., Garner, A. S., The Committee on Psychosocial Aspects of Child and Family Health, Committee on Early Childhood, Adoption, and Dependent Care, &amp; Section on Developmental and Behavioral Pediatrics. (2012). The lifelong effects of early childhood adversity and toxic stress. <em>Pediatrics, 129</em>(1), e232–e246. <a href="https://doi.org/10.1542/peds.2011-2663" style="color:var(--sage);">https://doi.org/10.1542/peds.2011-2663</a>
+      </li>
+      <li>
+        Durlak, J. A., Weissberg, R. P., Dymnicki, A. B., Taylor, R. D., &amp; Schellinger, K. B. (2011). The impact of enhancing students' social and emotional learning: A meta-analysis of school-based universal interventions. <em>Child Development, 82</em>(1), 405–432. <a href="https://doi.org/10.1111/j.1467-8624.2010.01564.x" style="color:var(--sage);">https://doi.org/10.1111/j.1467-8624.2010.01564.x</a>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>Growing Minds: A Social &amp; Emotional Learning Resource for Educators &nbsp;|&nbsp; Created for EDU-354 &nbsp;|&nbsp; Grand Canyon University &nbsp;|&nbsp; 2026</p>
+  <p style="margin-top:0.5rem;">All content is informed by peer-reviewed research. This site is for educational purposes.</p>
+</footer>
+
+<script>
+  function showStage(stage) {
+    document.querySelectorAll('.stage-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('stage-' + stage).classList.add('active');
+    event.target.classList.add('active');
+  }
+</script>
+</body>
+</html>
